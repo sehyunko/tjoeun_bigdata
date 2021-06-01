@@ -1,0 +1,47 @@
+10장. API 
+
+자바에서는 이미 만들어진 유용한 여러 클래스 및 메소드들을 제공한다. 
+
+java.lang에 속한 메소드들은 별도의 import과정을 거치지 않고서도 사용이 가능하다 
+
+**몇가지 유용한 메소드들** 
+
+1. String 클래스 
+concat(String str): 저장된 문자열과 str을 결합 
+substring(int begin): 문자열의 begin 인덱스부터 끝까지 추출 
+indexOf (char ch): 입력한 문자의 인덱스 값을 반환 (int 반환값) 
+replace(char old,char new) 입력해준 문자열을 char new로 변환
+
+2. StringBuffer/StringBuilder : String과는 달리 기존 문자열에 변화가 생기면 아예 새로운 객체를 생성하지 않고 기존의 것을 수정 
+			메모리를 과소비 하지 않고 처리속도가 빠름 
+append(String str) 새로운 문자열을 쥐에 추가
+insert(int index, String str) index번째에 문자열을 삽입
+delete(int start, int end) start부터 end 인덱스 까지의 문자를 지움
+capacity( ) String클래스의 length와 같이 문자열의 길이를 int값으로 반환
+
+3. StringTokenizer : 문자열을 구분자(delimiter) 단위로 쪼갬 
+
+StringTokenizer tokenizer = new StringTokenizer(str1,"/"); ->디폴트 구분자는 스페이스
+str1.nextToken( ) -> 쪼개진 토큰을 반환 
+whlie(tokenizer.hasMoreTokens( )) { -> 문자열의 마지막에 다다르면 false를 리턴
+	sysout(tokenizer.nextToken( )); 
+} 
+
+4. Calendar, GregorianCalendar: 시스템으로부터 시간을 불러오는 클래스들 
+Calendar는 싱글톤 패턴으로 작성된 클래스 이므로 getInstance( )함수 호출을 통해 객체를 생성한다 
+Calendar.YEAR
+Calendar.MONTH
+Calendar.DAY_OF_MONTH
+현재 시간 중 연,월,일을 불러오는데 쓰이는 상수들 
+
+gregorianCalendar.getTimeInMillis( ) -> 현재의 시각을 밀리세컨즈로 불러온다
+
+5. SimpleDateFormat : Date나 Calendar, GregorianCalendar로 불러온 시각을 사용자가 원하는 포맷으로 변경 
+simpleDateFormat("yyyy/MM/dd hh시 mm분 ss초"); 
+
+6.Math
+Math.random( ) -> 0부터 1사이의 난수를 발생시킨다
+
+7. Random : 난수를 생성할 때 쓰인다 
+random.nextInt(45) -> 0부터 45사이의 정수 난수를 발생시킴
+ 
