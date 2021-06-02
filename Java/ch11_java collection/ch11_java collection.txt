@@ -1,0 +1,43 @@
+11장. 자바 컬렉션 (Java Collection) 
+
+배열: 처음에 선언해 놓은 배열의 크기를 이후에 변경할 수 없는 단점이 있다. 이것을 보안 한 것이 자바 컬렉션 
+
+1. List 
+(1) ArrayList : 배열과 비슷하게 인덱스 값으로 데이터 접근이 가능함. 
+	     데이터가 입력되면 앞에서 부터 순서대로 데이터를 쌓아서 저장함.
+	      중복된 데이터를 허용한다 
+add(index,객체) -> 데이터를 추가할 때 쓰이는 메소드 
+get(index) -> 인덱스를 통해 데이터를 접근할 때 쓰이는 메소드 
+size( ) -> 배열의 length와 같이 ArrayList의 크기를 반환함 
+isEmpty( ) -> 배열이 비어 있는가를 true/false로 반환 
+
+(2) Vector :  ArrayList와 거의 유사한 자료구조. 일부 몇몇 API들은 입력값으로 ArrayList가 아닌 Vector만을 받기도 한다. 
+	   ex. InputStream에서 1바이트 단위가 아닌 5바이트, 6바이트 단위로 읽어 오고 싶다면 크기가 5,6인 Vector를 인자값으로 넣어 주어야 한다
+
+(3) LinkedList: ArrayList보다 원하는 인덱스의 데이터에 접근하는 시간은 빠르나, 데이터를 추가,삭제 하는데 시간이 오래걸린다
+
+2. Set 
+
+(1) HashSet : 중복을 허용하지 않는 자료구조이다. 
+
+(2) TreeSet: HashSet과 유사하게 중복을 허용하지 않는 자료구조이나, 다른점은 숫자면 숫자크기에 따라, 문자면 알파벳 순서에 따라 자료를 배열한다
+ 
+3. HashMap 
+
+ArrayList가 인덱스 단위로 자료를 저장 한다면, HashMap은 각 데이터 값에 할당된 고유의 key값으로 자료를 저장 한다 
+
+
+4. Iterator 반복자 
+
+List 자료구조는 인덱스 값이 할당되어 있어 for문을 통해 원하는 인덱스의 데이터에 접근할 수 있지만 
+
+Set이나 HashMap은 그렇지 않다. 이러한 자료구조는 Iterator를 통해 데이터에 접근한다. 
+
+예시) Iterator<클래스 타입> iterator  = new Iterator<클래스 타입>( ); 
+       while (iterator.hasNext( )){ 자료구조의 끝에 다다르면 hasNext ( ) 메소드가 false를 반환하고 while문은 종료된다 
+	   sysout(iterator.next( )); 
+}
+
+ 
+
+
