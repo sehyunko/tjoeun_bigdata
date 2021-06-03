@@ -1,0 +1,34 @@
+14장. GUI (Graphic User Interface) 
+
+**java.awt 패키지 활용** 
+
+1. 화면 구성요소 (컴포넌트) 
+(1) container (Frame) : 실행했을때 불러오는 브라우저 창
+(2) Panel : Button, Text Field, Text Area 와 같은 컴포넌트들을 하나의 Panel위에 올려 묶을 수 있음 
+(3) Button
+(4) Label 화면에 표시되는 글자 (사용자가 input해서 생성한 글자 아님) 
+(4) Text Field: 한줄 짜리 텍스트를 작성해 넣을 수 있는 구성요소 
+(5) Text Area: 여러 줄 짜리 텍스트를 담을 수 있는 구성요소 
+
+2. 레이 아웃 
+
+컴포넌트들을 배열을 하는 레이아웃 방식에는 크게 BorderLayout (default), 
+GridLayout(행렬의 형태로 된 격자 생성), FlowLayout(왼 >오른으로 한줄로 쭉 정렬, 크기가 초과 되면 다음 줄로 내려감)이 있다. 
+
+BorderLayout의 구성 
+
+		NORTH 
+
+	WEST 	CENTER	  EAST
+ 
+		SOUTH
+
+3. 대략적인 화면 생성 과정 
+
+레이아웃 세팅 -> 컴포넌트 객체 생성 -> 컴포넌트를 컨테이너에 부착 (add) -> 화면, 컴포넌트들의 크기 조정 -> Button의 이벤트 처리  
+
+**java.Swing 패키지 활용 **
+
+AWT 패키지와 사용하는 방법이 매우 유사. JButton, JPanel.... 등과 같이 기존의 컴포넌트 클래스 명 앞에 J가 붙음. 
+
+또한 Swing을 사용시 대략적인 화면 생성과정은 AWT와 동일하나 제일 먼저 getContentPane( )메소드를 통해 컨테이너를 얻어오는 작업이 필요하다.
