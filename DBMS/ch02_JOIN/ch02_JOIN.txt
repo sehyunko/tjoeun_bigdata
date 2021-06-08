@@ -18,7 +18,7 @@ DEPT 테이블에는 부서번호, 부서위치 정보 등이 담겨있는데, �
 2. EQUI JOIN 
 일정한 조건을 걸어주어 두개 이상의 테이블을 합친다. 
 
-예제에 쓰인 EMP 테이블을 DEPT 테이블이 DEPTNO(부서번호)라는 공통된 필드값을 통해 참조하는데, 이 경우 EMP 테이블의 DEPTNO와 DEPT테이블의 DEPTNO가 같다는 
+예제에 쓰인 DEPT 테이블을 EMP 테이블이 DEPTNO(부서번호)라는 공통된 필드값을 통해 참조하는데, 이 경우 EMP 테이블의 DEPTNO와 DEPT테이블의 DEPTNO가 같다는 
 
 조건을 WHERE 문에 걸어주어 EQUI JOIN을 할 수 있다 
 
