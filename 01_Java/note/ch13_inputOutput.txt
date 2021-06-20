@@ -1,0 +1,18 @@
+13장. 자바 입출력 
+
+1. 기본 입출력: 1byte씩 데이터를 읽어들이거나 출력한다 
+
+InputStream/OutputStream 클래스 
+
+-> DataInputStream/DataOutputStream : 외부에서 함부로 출력된 파일을 읽을 수 없도록 파일을 출력함. DataInputStream을 통해 
+				   작성된 파일을 자바를 이용해 파일 데이터가 작성된 형식에 맞게 읽어 들여야 읽을 수 있음.
+
+만약 1byte 가 아닌 5byte 내지 10byte 씩 한번에 데이터를 읽거나 쓰고싶다면, 배열의 길이가 5 또는 10인 Vector를 만들어서 
+read ( ) 메소드의 인자값으로 넣어준다. 
+
+
+Reader/Writer 클래스 : 보통 문자열을 읽어 올때 쓰임. 2byte 씩 읽어 온다 (영문자 = 1byte, 한글/기타 외국어 = 2byte) 
+
+
+printWriter 클래스: Writer클래스와 유사하나, 작성을 하는 방식이 sysoutln, sysout과 같은 형태의 메소드들이 있어서 쓰기 편리하다.
+		다만 printWriter 클래스는 append기능을 지원하지 않는다 
