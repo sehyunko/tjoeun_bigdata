@@ -1,0 +1,66 @@
+10장. MySQL 
+
+이전 까지 사용했던 오라클 DB와 구문 면에서 거의 흡사하나, 일부 그룹 함수나 일부 구문 내용이 조금씩 상이하다.
+
+1. MySQL의 설치 
+
+oracle/downloads 에 접속해서 database -> mysql -> mysql community -> mysql community server제 접속,
+
+내 pc에 맞는 버전의 MySQL을 다운 받는다. 주의할 것은 zip 버전이 아닌 Installer 버전을 받아야 
+
+이후 Java나 Python등에 연동시켜 작업 할 수 있는 드라이버들 까지 손쉽게 설치할 수 있다 
+
+2. MySQL의 시작 
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin 파일로 이동해 cmd창을 켠다. 
+
+mysql -u계정 아이디 -p계정 비밀번호 
+
+위 문장을 cmd창에서 실행해 root라는 아이디와 mysql 이라는 비번으로 관리자 계정을 만든다. 
+
+MySQL의 Work Bench 라는 IDE를 실행해 작업을 한다 
+
+**오라클 DB와는 다르게 접속후 use DB명; 명령어를 통해 작업하고자 하는 DB에 접근한 이후, 작업을 시행해야 한다  
+
+3. MySQL의 개념 
+
+(1) 자료형 
+
+숫자: int, integer, float(m,d), double
+
+문자: varchar, char (오라클DB의 varchar2는 없음) 
+
+시간: date (날짜만), datetime (날짜+현재시간), timestamp
+
+(2) 제약 조건 
+not null, default를 제외하고는 모두 변수 제약조건 선언문 맨 아래에 모아서 선언 해준다 
+
+(3) outer join 문 
+예를 들어, 
+
+Oracle DB에서 이런 문장을 수행한다면 
+
+SELECT W.ENAME, M.ENAME FROM EMP W,EMP M -- 직원과 상사명, 상사가 없어서 NULL값이 나오는 말단 직원들 까지 출력하는 OUTER JOIN
+	WHERE W.MGR(+) = M.EMPNO; 
+
+똑같은 작업을 MySQL에서 시행한다면 
+
+select w.name, m.ename 
+	from emp w left outer join ename m on w,mgr = m.empno;
+
+--> select 선택할 [변수명] from [테이블1] left/right outer join [테이블2] on [ join할 조건]; 
+ 
+(4) 컬럼함수 
+
+1. concat(문자1,문자2,문자3...) : 오라클 DB와 다르게 concat함수에 여러 인자가 들어갈 수 있음. 따라서 | | 문자열 결합 연산자가 MySQL에는 없다 
+2. year/month/dayname(date 변수) : 날짜 변수로 부터 년도, 월, 요일을 추출한다 
+3. sysdate( ), now( ): 시스템으로 부터 현재의 날짜,시간을 추출한다.
+4. date_format(now( ), '%y년%m월%e일 %a %p %h시 %i분); -> %Y 4자리년도, %y 2자리년도, %M월이름(영어), %m 숫자로 표현된 월, %e 월내의 일
+
+  
+(5) MySQL에서의 Top-N 구문 
+
+select 컬럼명 from 테이블명 
+	order by 변수명 desc 
+	limit 2,3; 
+-> limit 예약어로 훨씬 간단하게 Top-N 구문을 수행가능하다. 주의할 것은 추출할 등수가 0등부터 시작하므로 limit 2,3 이라고 작성하면 상위 1등부터 2등 까지 추출한다

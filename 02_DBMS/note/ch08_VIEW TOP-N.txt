@@ -1,0 +1,52 @@
+8장. VIEW TOP-N
+
+1. VIEW의 개념 
+
+일반 사용자가 데이터베이스의 일부 테이블만 접근하고 조작할 수 있도록, 데이터베이스 내의 테이블들로 형성된 가상의 테이블 
+
+(구성한 테이블의 갯수에 따라 단순뷰 (1개), 복합뷰(2개 이상, JOIN을 통해 합쳐진 테이블)으로 나뉜다)
+
+** VIEW의 제한 조건 
+
+기존 테이블 내에 NOT NULL로 포함된 필드는 반드시 포함 해야 한다. (예를 들어 PRIMARY KEY로 지정된 필드에 NULL을 넣으면 에러가 난다) 
+
+WITH READ ONLY -> 사용자가 VIEW를 통해 SELECT절을 이용한 조회만 가능하고, DML, DDL문은 수행 불가능 하다 
+
+WITH CHECK OPTION -> INSERT 또는 UPDATE 수행시, 뷰의 조건을 만족해야만 한다.  
+		       
+예를 들어 EMP테이블에서 20번 부서의 사람 정보만 가져 온 VIEW를 만들었는데, 사용자가 30번 부서에 사원 정보를 입력하려 한다면, WITH CHECK OPTION이 설정된 경우 에러가 난다. 
+
+
+2. VIEW 생성 문법 
+
+CREATE OR REPLACE VIEW 뷰 명칭 
+	AS 서브쿼리 
+	WITH READ ONLY
+	WITH CHECK OPTION; 
+
+-> 생성된 VIEW는 일반 테이블 처럼 SELECT문을 통해 검색이 가능하다 
+-> 함수를 적용해서 필드를 생성 할 경우 함수가 적용된 필드에 별칭을 꼭 부여 하고 뷰를 생성해야 한다 (필드명에 특수문자가 있으면 컬럼명으로 인식하지 않기 때문에)  
+
+3. VIEW를 통한 DML 수행 
+
+단순뷰에서 DML연산을 수행할 수 있다 
+
+VIEW가 만약 다음을 포함하는 경우에는 행을 제거,수정,추가 할 수 없다 -> 그룹함수, GROUP BY절, DISTINCT 키워드 
+
+4. INLINE VIEW 
+FROM 절에 서브 쿼리가 쓰인 형태. FROM 절에 서브 쿼리가 쓰이면 FROM절의 테이블이 가상테이블의 형태로 쓰인다 
+(INLINE VIEW에서 함수가 적용된 필드는 꼭 별칭을 부여할 것) 
+
+5. TOP-N 구문 
+필수 요소 ROWNUM: 예약어 FROM 절에서 데이터를 읽어 온 순서 대로 각 행에 번호를 부과 한다 
+
+대략적인 TOP-N 구문 작성법 
+
+	SELECT [column_list] ROWNUM  -- ROWNUM은 테이블에서 읽어오는 순서
+		FROM
+		(SELECT [column_list] FROM table 
+		ORDER BY TOP-N_column)
+		
+		WHERE ROWNUM <= N;
+
+(자세한 것은 순위 매기기 예제를 보면서 익힌다) 
