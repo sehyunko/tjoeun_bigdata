@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #wrap {
+            position: relative;
+            z-index: 999;
+            width: 1000px; margin:20px auto;
+            border: 1px solid gray;
+        }
+        #background_img {
+            background: url('https://t1.daumcdn.net/cfile/tistory/9946A4505F5817A60D');
+            margin:0; padding:0;
+            background-size: 100%;
+            opacity: 0.5;
+            width: 100%;
+            height: 100%;
+            margin:0; padding:0;
+            position: absolute;
+            top:0;
+            left:0;
+            z-index: -999;
+        }
+        
+        #header{
+            border-bottom: 1px solid gray;
+            padding: 10px;
+            overflow: hidden;
+            height:120px;
+        }
+        #header img{
+            float: left;
+            margin: 10px;
+        }
+        #header h3 {
+                float: left;
+                line-height: 150px;
+         }
+        #nav{
+            overflow: hidden; 
+            border-bottom: 1px solid gray;
+
+        }
+        #nav ul li{
+            float: left; 
+            list-style: none;
+            padding: 20px;
+        }
+        #nav ul a{
+            text-decoration: none;
+        }
+        #section{
+            overflow: hidden;
+            border-bottom: 1px solid gray;
+            height: 500px;
+        }
+        #section #contents{
+            float: left;
+            text-align: center;
+            width: 700px;
+            height: 500px;
+            border-right: 1px solid gray; 
+            line-height: 450px;
+        }
+        #section #banner {
+            float: left;
+            text-align: center;
+            width: 299px;
+            height: 500px;
+            line-height: 450px;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div id="wrap">
+
+        <div id="header">
+            <img src="https://www.pngitem.com/pimgs/m/407-4070864_no-copyright-esport-logo-hd-png-download.png" width="100" height="100" />
+            <h3>SEHYUN'S PAGE</h3>
+        </div>
+        <div id="nav">
+            <ul>
+                <li><a href="#">메뉴1</a></li>
+                <li><a href="#">메뉴2</a></li>
+                <li><a href="#">메뉴3</a></li>
+                <li><a href="#">메뉴4</a></li>
+                <li><a href="#">메뉴5</a></li>
+            </ul>
+        </div>
+        <div id="section">
+            <div id="contents">
+                <h3>contents</h3>
+            </div>
+            <div id="banner">
+                <h3>banner</h3>
+            </div>
+        </div>
+        <div id="footer">
+            <p><i>©Copyright 2021. SEHYUN'S PAGE all rights reserved.</i></p>
+        </div>
+        <div id="background_img"></div>
+    </div>
+</body>
+</html>
