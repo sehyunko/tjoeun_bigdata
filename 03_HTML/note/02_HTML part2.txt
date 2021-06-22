@@ -1,0 +1,56 @@
+02. HTML part2
+
+1. form 태그 
+
+사용자에게 입력받는 공간 태그 보통 input 태그를 감싼다. (자바의 Scanner 클래스와 유사) 
+
+<form> 
+    <input type="type 옵션 " placeholder="작성할 내용 " required="required" pattern="정규표현식" method="GET 또는 POST "/>
+	<form/>
+
+(1) type 옵션에 작성할 수 있는 옵션들:
+
+text,
+checkbox, 
+radio(하나씩만 고를수 있게 하고 싶은 경우 radio의 name을 같게 해주어야 함에 유의), 
+submit, reset (꼭 form 태그 내부에 작성되어야 함에 유의)
+
+등등
+
+(2) placeholder
+
+input="type" 또는 "password" 지정시 입력란에 사용자가 입력양식을 알 수 있게 placeholder를 기입한다. 
+
+(3) required 
+
+필수 입력 사항일시 작성해둔다. 사용자가 작성을 하지 않으면 submit이 되지 않는다. 
+
+(4) pattern 
+
+pattern 항목에 정규표현식을 기입하여, 사용자가 입력한 전화번호나 주민등록번호 같은 것들이 형식에 맞지 않을시, submit이 되지 않는다. 
+
+(5) method
+
+GET 방식 일 시, -> submit 된 인자 값들이 url에 그대로 표기 된다.
+POST 방식 일 시에, -> submit 된 인자 값들이 url에 표시되지 않는다.
+
+
+2. script 태그 
+
+body에서 동적 내용을 추가 하고 싶을때, head 부분에 script 태그를 작성하여 구현 가능하다. 
+
+script 태그 내에 자바 스크립트 구문을 이용해서 필요한 함수를 정의하여 이용한다. 
+
+
+3. fieldset 태그 
+
+div 태그에 border를 입힌 것과 같은 효과를 주는 텍스트 필드를 만든다. 
+
+<fieldset> 
+    <legend>필드의 제목<fieldset/> (필드셋의 제목이 보더사이에 끼어서 나타남) 
+	<ul>
+	   <li><label for="name">이름<label/>
+			.
+ 			.
+			. 
+<fieldset/> 
