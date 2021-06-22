@@ -1,0 +1,32 @@
+﻿
+
+
+#header{
+    text-align: center;
+    margin: 0 auto;
+    width: 500px;
+}
+#section {
+    margin: 0 auto;
+    width: 500px;
+    border: 1px solid gray;
+}
+#section table{
+    text-align: left;
+    margin-left: 90px;
+}
+#section td, th{
+    padding: 10px;
+}
+#section table .button{
+    text-align: center;
+}
+#footer {
+    text-align: center;
+    margin: 5px auto;
+    width: 500px;
+    border: 1px solid gray;
+}
+#footer ul li{
+    padding: 5px;
+}
