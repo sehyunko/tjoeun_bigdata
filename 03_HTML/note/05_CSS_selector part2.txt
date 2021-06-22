@@ -29,17 +29,3 @@ stylesheet에서 작업을 하고 싶다면, 구조 선택자를 이용하면 �
 	color: red;
 }
 section div에 있는 unordered list 내 list들 중 홀수 번째 내용만 가져와서 빨간색으로 변경한다. 
-
-
-
-
-
-
-
-4. 문자 선택자 
-
-
-5. 링크 선택자
-
-
-6. 부정 선택자
