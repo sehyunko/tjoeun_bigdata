@@ -71,7 +71,16 @@ HTML에서는 소스 내에 여러번 엔터나 스페이스를 쳐도 결국은
 
 <image src="파일이 담긴 주소" />
 
+(5) select 태그 
 
+ <select name="셀렉트명">
+    <option>메뉴1<option/>
+    <option>메뉴2<option/>
+    <option>메뉴3<option/>
+ <select/> 
+ 
+ 버튼을 누르면 담긴 메뉴가 아래로 쭉 나오는 일종의 drop-down 박스를 만든다.
+ 
 
 
 
