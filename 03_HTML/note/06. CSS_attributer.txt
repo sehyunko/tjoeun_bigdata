@@ -23,7 +23,7 @@ inline-block 형태라는 것도 있는데, 이것은 기본적으로 inline 형
 
 4. visibility (cf. display)
 
-visibility: none; 으로 지정을 하면 해당 컴포넌트의 공간은 남겨두고 (공백으로) 화면상에 나타나지는 않게 된다. 
+visibility: hidden; 으로 지정을 하면 해당 컴포넌트의 공간은 남겨두고 (공백으로) 화면상에 나타나지는 않게 된다. 
 
 * display: none; 의 경우 컴포넌트를 화면 상에서 아예 사라지게 하여 공간조차도 아예 사라진다. 
 
