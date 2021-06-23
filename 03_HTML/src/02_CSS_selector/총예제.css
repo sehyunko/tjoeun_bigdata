@@ -1,0 +1,109 @@
+﻿#header, #footer {
+    overflow: hidden;
+    margin: 0 auto;
+    width: 1000px;
+    height: 150px;
+}
+
+#contents {
+    overflow: hidden;
+    margin: 0 auto;
+    width: 1000px;
+    height: 300px;
+}
+
+#header .left, #footer .right {
+    float: left;
+    background-color: lightgray;
+    border: 1px solid gray;
+    width: 150px;
+    height: 150px;
+    border-radius: 20px 0;
+}
+
+#header .right, #footer .left {
+    float: left;
+    background-color: lightgray;
+    border: 1px solid gray;
+    width: 150px;
+    height: 150px;
+    border-radius: 0 20px;
+}
+
+#header .center {
+    float: left;
+    background-color: lightgray;
+    border: 1px solid gray;
+    width: 694px;
+    height: 150px;
+    border-radius: 0 0 20px 20px;
+}
+
+#footer .center {
+    float: left;
+    background-color: lightgray;
+    border: 1px solid gray;
+    width: 694px;
+    height: 150px;
+    border-radius: 20px 20px 0 0;
+}
+
+#contents .left {
+    float: left;
+    background-color: lightgray;
+    border: 1px solid gray;
+    width: 150px;
+    height: 300px;
+    border-radius: 0 20px 20px 0;
+}
+
+#contents .right {
+    float: left;
+    background-color: lightgray;
+    border: 1px solid gray;
+    width: 150px;
+    height: 300px;
+    border-radius: 20px 0 0 20px;
+}
+
+#contents .center {
+    float: left;
+    background-color: lightgray;
+    border: 1px solid gray;
+    width: 694px;
+    height: 300px;
+    border-radius: 20px;
+}
+
+#contents .right li:nth-child(10) {
+    color: red;
+}
+
+#contents .right li:nth-child(11) {
+    color: red;
+}
+
+#contents .right li:nth-child(12) {
+    color: red;
+}
+
+#center #nav {
+    overflow: hidden;
+}
+
+.center #nav ul li {
+    float: left;
+    list-style: none;
+    padding: 15px;
+}
+
+    .center #nav ul li a {
+        text-decoration: none;
+        color: black;
+    }
+
+.center #section {
+    clear: both;
+    text-align: center;
+    padding-top: 20px;
+}
