@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0; 
+        }
+        #nav{
+            margin: 5px auto; 
+            text-align: center;
+            line-height: 100px;
+            border: 1px solid lightgray;
+            width: 530px;
+        }
+        #nav ul li{
+            display: inline-block; 
+            border-top: 1px solid red;
+            border-bottom: 1px solid red;
+            width: 100px;
+            height: 100px;
+            color: blue;
+            list-style: none;
+        }
+        #nav ul li a{ /*링크 주변을 눌러도 링크가 눌러지게 inline 형에서 block 형태로 바꿔줌*/
+            text-decoration: none;
+            display: inline-block;
+        }
+        #explain{
+            margin: 5px auto;
+            width: 530px;
+
+        }
+        #explain p{
+            font-weight: bold;
+            font-size: 12pt;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <ul>
+            <li><a href="#">menu1</a></li>
+            <li><a href="#">menu2</a></li>
+            <li><a href="#">menu3</a></li>
+            <li><a href="#">menu4</a></li>
+            <li><a href="#">menu5</a></li>
+        </ul>
+    <div id="explain">
+        <p>원래 span 형태로 배열되는 링크들을 inline-block 형태로 display하여 width와, height 적용. 
+           따라서 링크 주변을 눌러도 링크를 누를 수 있게 적용됨
+            (스마트폰 화면에서 주로 이용)</p>
+    </div>
+    </div>
+
+
+</body>
+</html>

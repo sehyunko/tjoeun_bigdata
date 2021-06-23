@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        #wrap{
+            width: 700px; 
+            margin: 0 auto; 
+            border: 1px solid lightgray; 
+        }
+        #header{
+            height: 50px;
+            line-height: 50px;
+            background-color: lightgray; 
+        }
+        #contain {
+            height: 200px;
+            position: relative; /*원래 자신의 자리에 그대로 있기*/
+        }
+        #content1{ /*부모 div에 꼭 position을 잡아놔야 계획한대로 부모안에서 움직임*/
+            height: 180px;
+            width: 420px; 
+            background-color: red;
+            position: absolute; 
+            top: 10px;
+            left: 10px;
+            bottom: 10px;
+            z-index: -999;
+           
+        }
+        #content2 {
+            height: 180px;
+            width: 320px;
+            background-color: yellow;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            bottom: 10px;
+            z-index: 999;
+            
+        }
+        #footer {
+            height: 50px;
+            line-height: 50px;
+            background-color: lightgray;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">HEADER</div>
+        <div id="contain">
+            <div id="content1">CONTENT1(빨간색 왼쪽 부분)</div>
+            <div id="content2">CONTENT2(노란색 오른쪽 부분)</div>
+        </div>
+        <div id="footer">FOOTER</div>
+    </div>
+</body>
+</html>
