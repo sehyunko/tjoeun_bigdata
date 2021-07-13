@@ -1,0 +1,56 @@
+7장. ggplot2 패키지
+
+ggplot2 패키지 함수의 기본 구문 
+
+library( ggplot2 )
+
+ggplot(data= 데이터셋, aes(x= , y= )) +
+	geom_ (  ) + 
+	scale 계열 함수 (  ) + 
+	theme(   ) + .... 
+
+
+(1) geom 계열 함수 
+
+1. 산점도 geom_point( ) : size, pch (point shape), col (점의 테두리 색상), stroke(점의 두께), bg(점 내부를 채울 색깔)  ... 등의 옵션이 들어갈 수 있다. 
+
+2. 적합선 geom_smooth( ): method 옵션에 method=lm 을 지정해주면 선형 회귀식을 덧붙여 그려준다. default 옵션은 구간별로 나누어 적합선을 그리고 부드럽게 잇는  loess 기법이다. 
+
+3. 히스토그램 geom_hist( ): 연속형 독립변수에 따라 히스토그램을 그린다.  
+
+4. 그래프 위에 문자 추가하기 geom_text( ): 산점도를 그릴 때, 그래프 점들 위에 관련 텍스트를 추가한다. 또는 x,y 좌표값을 지정해 주어 해당 부분에 텍스트를 추가할 수도 있다. 
+
+5. 선 그래프 그리기 geom_line( )
+
+6. geom_col( ) 과 geom_bar( ) : 단순히 x값에 따른 빈도표를 그리는 것이 아니라 y의 값도 지정하여 그리고 싶다면 geom_col( )이 더 유용하다. stat='identity'를 지정해 줄 필요도 없고, reorder 함수 또한 aes( ) 내에서 먹히기 때문에 geom_bar( )보다 더 우수. 
+
+
+(2)  부가적인 함수들 
+
+1. labs( title = ' ' , subtitle = ' ', x= ' ', y= ' ', caption= ' ' ) : 그래프의 제목, 하위 제목, x축, y축이름 등을 지정 함. 
+
+2. xlab( ' ' ), ylab( ' ' ) : labs( ) 함수 내에서도 축 이름을 지정해 줄 수 있지만 xlab 또는 ylab 함수로 지정 해 줄 수도 있다. 
+
+3. scale_color_manual ( value = ) : RColorBrewer 같은 패키지의 팔레트나, 사용자가 지정한 색깔 옵션을 가진 벡터를 value 받는다. 
+
+4. scale_fill_brewer( palette = 'Reds') : palette 옵션에 지정해준 색깔 계열의 음영을 가진 팔레트에 따라 색깔을 넣어준다 
+
+5. facet_grid(범주형 변수 ~. ) : 일정 범주형 변수 (성별, 직업 등)에 따라 그래프를 나누어 따로 그린다. 
+
+6. theme( ) : 
+
+-> legend.position = 'none'  범례를 삭제한다 
+
+-> axis.text.x = element_text(angle=45, color='red', size=20) : x축의 눈금이 표시되는 옵션을 설정한다. 
+
+-> panel.background = element_rect(fill= '채울 색깔', color='선의 색깔' )  : 그래프 내부의 색깔등을 지정한다 
+
+-> plot.background = element_rect(fill= '채울 색깔', color='선의 색깔' ) : 그래프 바깥의 색깔등을 지정한다. 
+ 
+
+7. coord_cartesian( ) : 내부 옵션에 xlim 또는 ylim을 지정 해줄 수 있다.  
+
+
+** ggplot2 내 함수는 아니지만 유용한 함수 하나 더 
+
+** pairs(데이터프레임, panel=panel.smooth) : 각 변수 pair 간 산점도 행렬을 그려주어 변수간 상관관계 확인이 가능하다. panel 옵션을 주어 적합선을 그려주어 상관관계를 파악하기 더 용이 하게 한다.  
