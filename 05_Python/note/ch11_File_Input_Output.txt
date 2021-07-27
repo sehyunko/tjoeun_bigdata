@@ -1,0 +1,152 @@
+11장. 파일 입출력
+
+텍스트 파일 입출력, 바이너리 파일 입출력 (객체에 데이터를 담고 불러오는 것) 등 모두 공통적으로 파일 경로를 열고 닫는 기본적인 과정을 거치는데, 
+
+파이썬에서는 with 예약어를 통해 작업이 끝나고 with 블록을 벗어나면 자동으로 파일을 닫아주는 기능을 제공한다. 
+
+<대략적인 구문> 
+
+with open( '파일경로', ' 모드 ') as 파일 객체 별칭:
+	수행문장 
+
+** '모드' 에는 'w', 'r', 'wb','rb','a' 등의 인자값이 들어 갈수 있다. wb, rb는 pickling에서 처럼 데이터들을 각 대체에 담아 불러오거나 쓸 때 사용하는 모드이다
+
+** 'a' 모드는 기존의 있는 파일에 내용을 덧붙이는 반면, 'w' 모드는 기존 파일의 내용을 전부 삭제하고 새로운 내용을 추가한다
+
+1. 텍스트 파일 입출력 
+
+(1) 파일 write 
+
+with open( )을 이용해 파일 경로 열기 -> 리스트에 작성하고자 하는 텍스트들을 담기 -> 파일 객체의 write( ) 함수를 for문을 통해 파일에 텍스트 쓰기 
+
+*write( ): 한줄 작성만 가능하므로 for문을 같이 쓴다.
+
+*writelines( 리스트 ): for문 없이 여러줄을 한번에 작성한다.
+
+(2) 파일 read 
+
+with open( )을 이용해 파일 열기 -> 파일객체.readlines( )를 통해서 텍스트 내용 읽어오기 
+
+readlines( ) 함수는 텍스트 파일의 한줄을 요소로 갖는 리스트를 반환한다. 파일 내용의 마지막에 이르면 ' ' 빈 문자열을 반환
+-> while 문과 함께 사용하여 리스트 형태가 아닌 원본 텍스트 형태로 print( )가 가능하다 
+
+
+2. 피클링 
+
+텍스트 형식이 아닌 객체에 저장된 데이터를 입출력할 때 pickle 패키지를 활용하면 편리하다.
+
+(1) 파일 write 
+
+'wb' 바이너리 쓰기 모드로 파일 열기 -> pickle.dump( 객체, 파일객체) 
+
+** 데이터들을 담은 리스트 또한 객체 변수 이기 때문에 리스트를 넣어 주는 경우도 많다. 
+
+(2) 파일 read 
+
+'rb' 바이너리 읽기 모드로 파일을 연다 -> pickle.load( 파일객체) 
+
+
+3. csv 파일 입출력 
+
+import csv 
+
+(1) 파일 write 
+
+writer = csv.write(파일 객체)
+
+writer.writerows( 쓰기를 하고자 하는 리스트) 
+
+-> for 구문 없이 여러 줄의 텍스트를 쓴다. 
+
+* writer.writerow( list )는 한줄 쓰기만 가능하므로 for문과 함께 쓴다
+
+(2) 파일 read
+
+csv.reader(파일객체) : 전체 텍스트를 한줄당 하나의 리스트에 담고, 모든 줄에 대한 리스트를 담은 하나의 큰 리스트를 반환한다. 
+
+
+4. 딕셔너리 파일 입출력
+
+(1) 파일 write 
+
+csv.DictWriter(파일 객체, fieldnames = 딕셔너리의 키값을 담은 리스트) 
+
+** fieldnames 인자값으로 헤더에 오는 컬럼명을 지정한다.
+
+
+(2) 파일 read 
+
+csv.DictReader( 파일 객체, restkey='컬럼명' ) : 텍스트의 각줄이 하나의 딕셔너리가 되고, 여러 줄 텍스트에 대한 각 딕셔너리를 담는 리스트를 반환한다. 
+
+** 특정 열에서 restkey 에 지정한 컬럼에 해당하는 데이터가 없는 경우 None 값으로 대치해서 가져온다.   
+
+
+
+5. JSON 파일 입출력 
+
+JSON 파일이란 
+
+[
+  {'location':'서울',
+  'date':'2021-07-22',
+  'time':0,
+  'temperature':33},
+  {'location':'부산',
+  'date':'2021-08-13',
+  'time':0,
+  'temperature':35},
+]
+
+위와 같은 형태로 각 행에 해당하는 데이터가 딕셔너리 형태로 저장된 파일이다. 
+
+import json
+
+(1) 파일 write 
+
+json.dump(딕셔너리를 담은 리스트, 파일객체, ensure_ascii =  False, indent='\t') 
+
+** ensure_ascii 옵션을 통해 한글 데이터가 %EC%BD%94$EB 식의 유니 코드로 깨지지 않도록 False로 지정 한다. 
+
+** indent 값에 탭키를 주어 출력되는 json 데이터의 가독성을 높인다
+
+(2) 파일 read
+
+json.load(파일객체, object_hook = 적용할 함수명)
+
+** object_hook 옵션을 통해 딕셔너리 형태의 자료가 아니라 원하는 특정 포맷으로 변환해서 읽어 온다. 
+
+
+6. Pandas 패키지로 data frame 형태로 읽어오기 
+
+import pandas as pd 
+
+pd.read_csv(파일경로), pd.read_json(파일 경로), ... 등등 pandas 패키지 내에서 제공하는 여러 read 계열 메소드를 통해 데이터들을 
+
+쉽게 data frame의 형태로 읽어 올 수 있다  
+
+
+7. HDF5 파일 입출력
+
+HDF5 파일 형태:
+
+group1: {'인덱스1': '데이터 값1', '인덱스2': '데이터 값2', ...} 형태로 이루어진다 (group 값은 데이터 프레임에서 컬럼명이라고 보면 됨)
+
+파일 입출력시, 딕셔너리의 key값을 HDF5의 group값으로, value 값을 HDF5에서 해당 그룹의 value값으로 받는다.
+
+<코드 작성 구조> 
+
+(1) 파일 write
+
+import h5py
+
+with h5py.File( '  저장 경로  ', ' 모드 ') as f:
+	for group,value in iris_dic.items():
+        		grp = f.create_group(group)  # iris 딕셔너리 데이터의 key 값을 HDF5 자료의 group값으로 쓴다
+        		for key, data in value.items():  # value.items( )는 해당 데이터의 (인덱스 값, 데이터 값)을 리턴한다
+            		grp.create_dataset(str(key),data=data) # value.items( )에서 반환된 인덱스값은, HDF5 파일에서도 인덱스값으로,value.items( )의 데이터값 또한 HDF5의 데이터 값으로 넣어주어 데이터셋을 만든다
+
+iris_df.to_hdf('data/ch09_iris2.hdf5',key='iris') # HDF5 파일에서의 해당 데이터셋의 key 값을 정해준다. 
+
+(2) 파일 read
+
+pd.read_hbf(파일 경로, key='HDF5 데이터셋의 key값) 
