@@ -1,0 +1,43 @@
+12장. 데이터 베이스 연동 
+
+(1) SQLite DB 연동 
+
+SQLite : 별도의 DBMS가 필요없고, 디스크 기반의 DB를 제공 하는 C 언어 기반 라이브러리. 보통 프로토타입을 만들 때만 사용한다. 
+
+           다수의 이용자가 동시에 접근을 할 수 없다. 한 번에 한 사용자만 접근이 가능함. 따라서 Python을 통해 SQLite 연결을 열어 논 상태에서 동시에서 SQLite Browser로 접속을 하면 작업에 오류가 나는 경우가 많다.
+
+1. SQLite 연동 단계 
+
+import sqlite3
+
+connection 객체 생성: conn = sqlite3.connect( ' 파일 경로 ' ) 
+
+cursor 객체 생성: cursor = conn.cursor( )  
+
+sql 문 전송: cursor.execute( ' 쿼리문 ') 
+
+select 문 이용시 데이터 가져오기 : data = cursor.fetchall( ) / cursor.fetchmany( n )
+
+commit 하기 : conn.commit( ) 
+
+cursor, conn 닫기 : cursor.close( ),  conn.close( ) 
+
+
+** fetchall( ) 모든 데이터를 한번에 가져온다. fetchmany( n ) 데이터 중 n 행 만큼 가져온다 
+
+** cursor.execute( ' select * from emp where name =:name and sal = :sal ', { ' name ': name, ' sal ': sal } -> 자바에서의 prepared statement와 같음. 다만 파이썬 에서는 파라미터에 dictionary 형태로 값을 넣어준다. 
+
+
+2.  Oracle DB 연결 
+
+Oracle DBMS 나, MySQL DBMS는 여러 사용자가 동시에 접속을 하여도 SQLite처럼 오류가 발생하지 않는다. 
+
+1. Oracle DB 연결단계 : 처음 connection 객체 생성 하기 전 DB와 연동하는 과정 외에는 SQLite와 동일
+
+import cx_Oracle ( 기본 탑재된 패키지가 아니므로 !pip install cx_Oracle 수행 후 실행) 
+
+oracle_dsn = cx_Oracle.makedsn( host = 'localhost', port = 1521, sid = ' ex ') 
+
+conn = cx_Oracle.connect(' 계정 id ' , ' 계정 password ', dsn = oracle_dsn ) 
+
+cursor = conn.cursor( ) 
