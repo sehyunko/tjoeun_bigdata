@@ -88,6 +88,8 @@ dict.values( ): 딕셔너리의 value값만 리스트로 반환
 
 dict.items( ) : (key, value) 가 담긴 튜플을 담은 리스트를 반환한다.
 
+** 딕셔너리는 dict.remove('key') 형태로 자료삭제는 불가하나 dict.pop('key') 또는 del(dict['key']) 식으로 자료삭제는 
+
 
 4. 셋 (set) : 중복되는 요소를 제거한 요소 종류만을 담음. 요소들간의 순서가 따로 없다. 
 
