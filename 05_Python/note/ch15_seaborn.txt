@@ -1,0 +1,137 @@
+15장. seaborn 패키지 
+
+** 기본 설정 
+
+import matplotlib.pyplot as plt
+
+plt.rc('font',family='Malgun Gothic') # 윈도우즈 기본 한글 설정
+
+plt.rc('axes',unicode_minus=False) # 축 - 부호가 유니코드로 안 깨져서 나오게끔 설정 
+
+
+import warnings
+
+warnings.filterwarnings(action='ignore')
+
+경고문구가 나오는 경우 경고문구를 콘솔창에 출력하지 않고 무시함 
+
+
+1. 기본 미적 속성 지정하기 
+
+import seaborn as sns 
+
+sns.set(style='darkgrid')  # 그래프 배경 기본 테마 설정 : darkgrid, whitegrid, dark, white, ticks 등의 옵션이 있음. 
+
+sns.set(style='paper') # 그래프의 배율을 조정한다 : notebook (0.8배율), talk (1.3배율), poster (1.8배율), 기본값은 1배율이다 
+
+sns.set_palette( 'flare', 3) # flare 파레트에서 3개의 색깔을 뽑는다
+	.
+	.
+	.
+
+plt.legend(bbox_to_anchor = (1.15,1), prop={'size' : 15})  
+
+# bbox_to_anchor:  범례를 그래프 바깥으로 뺀다. x축 기준, 그래프 좌상단에서부터 우상단으로 0~1, y축 기준 아래에서 위로 0~1인 것을 고려하여 위치 조정 
+
+# prop: 범례의 사이즈를 조정한다 
+
+plt.show( ) # 그래프만 보이고 호출된 객체 명은 콘솔창에서 생략한다. ( 주의: plt.savefig( )과 함께 쓰면 그림파일이 저장 되지 않는다. 따라서, 이미지 파일로 저장 하고 싶을땐 plt.show()를 쓰지 않는다 
+
+
+
+
+2. 연속형 함수 그래프 
+
+(1) sns.scatterplot( x = , y= , data= , hue=' 범주형 변수',style=' 범주형 변수', palette= ) 
+
+hue 옵션에 범주형 변수를 지정해주면, 카테고리에 따라 marker의 색깔을 다르게 지정해서 그린다. 
+
+마찬가지로 style 옵션에 범주형 변수를 지정해주면 카테고리에 따라 다른 marker 모양으로 산점도를 그린다. 
+
+
+(2) sns.lineplot(x= ,y= , data= , hue=' 범주형 변수' , style= '범주형 변수') 
+
+lineplot의 옵션들도 scatterplot과 동일 하게 작용한다
+
+
+(3) sns.pairplot( data=iris, hue='species' )
+
+각 변수들 간의 pair 별로 산점도를 그려준다. 변수간 상관관계에 대해 대략적인 파악을 하는데에 용이하다
+
+
+(4) sns.displot(x= , kde=True/False) 
+
+kde=False로 지정하면 히스토그램과 모양이 유사한 그래프가 나온다. (다만 히스토그램은 y축이 빈도수, distplot은 y축이 밀도이다) 
+
+kde=True로 설정하면 각 bin들을 이은 smooth한 곡선을 덧씌워 그린다. 
+
+
+(5) sns.regplot( data = , x= ,y= ) 
+
+x와 y 값에 따른 산점도를 그리고 그 위에 회귀식을 적합해서 그린다. 
+
+
+(6) sns.lmplot( data = , x= ,y= ,col='범주형 변수') 
+
+regplot과 거의 동일하다. 다만 lmplot은 col 옵션에 범주형 옵션을 지정해주어 회귀식이 적합된 그래프를 subplot들에 나눠서 그린다. 
+
+
+
+3. 범주형 그래프 
+
+(1) sns.swarmplot( data = , x= , y= ) 
+
+데이터셋에 있는 모든 점들을 겹치지 않게 펼쳐서 그린다 
+
+
+(2) sns.stripplot( data = , x= , y= ) 
+
+데이터 셋의 모든 점들을 그려준다. swarmplot과 조금 다른점은, 점들이 겹쳐서 나오는 것을 허용한다는 점 
+
+
+(3) sns.boxplot( data = , x= , y= ,hue= '범주형 변수' ) 
+
+
+(4) sns.boxenplot(data = , x= , y= ,hue= '범주형 변수') 
+
+boxplot과 violinplot의 중간 정도의 그래프다. 박스플롯에 각 구간별 점들의 분포도를 함께 확인이 가능하다 
+
+
+(5) sns.violinplot( data = , x= , y= ,hue= '범주형 변수') 
+
+
+(6) sns.poinplot( data=titanic, x='범주형 변수', y='범주형 변수',hue='범주형 변수' ) 
+
+x축의 각 카테고리별 y값의 변화 추이를 보기 쉽게 표현해준다. 선그래프에 x축의 각 카테고리 좌표마다 점이 찍힌 형태의 그래프가 생성된다
+
+
+4. catplot 과 relplot (R의 mfrow 또는 ggplot2의 facet_wrap과 유사) 
+
+범주형 변수의 카테고리에 따라 그래프를 여러 subplot으로 나누어서 그린다. 
+
+
+(1) sns.catplot( kind= 'bar/violin... ', data= iris, x= , y= , hue= , col= ' 범주형 변수' ,col_wrap= ) : 범주형 변수에 대해 subplot을 나누어 그린다
+
+col 옵션에 지정된 범주형 변수의 카테고리에 따라 subplot이 나눠지고, 
+
+col_wrap에 지정된 열의 수에 맞춰 subplot 그래프들이 배열된다. 
+
+hue 옵션에 지정된 범주형 변수에 따라 산점도의 marker, bar 그래프의 bin 들이 다른 색으로 채워진다.
+
+
+(2) sns.relplot( kind= ' scatter/line... ', data= iris, x= , y= , hue= , col= ' 범주형 변수' ,col_wrap= ) : 수치형 변수에 대해 subplot을 나누어 그린다
+
+옵션들은 catplot과 동일하다. catplot은 수치형 변수에 대한 그래프( 바 차트, 바이올린 차트 등), relplot은 연속형 그래프( lineplot, pointplot등 )에 대한 subplot을 그린다 
+
+
+ 
+5. sns.FacetGrid( ) : seaborn 패키지내 subplot을 지원하는 함수 
+
+g = sns.FacetGrid( data = , col= ' 범주형 변수 ', hue= ' 범주형 변수 ' ) 
+
+g.map ( sns.scatterplot, x= 'column1' , y= 'column2')
+
+
+-> col 옵션에 지정된 범주형 변수의 카테고리에 따라 subplot을 나누어 그래프를 그린다.  
+
+
